@@ -6,6 +6,10 @@
 // handling interatctions, getting a random phrase, checking for
 // a win and removing a life from the scoreboard
 
+
+const overlay = document.getElementById('overlay');
+const liveHeart = document.getElementsByTagName('img');
+
 class Game {
     constructor(){
         this.missed = 0;
@@ -28,33 +32,85 @@ class Game {
         let randomPhrase = Math.floor(Math.random() * this.phrases.length);
         return this.phrases[randomPhrase];   
     }
-    //hides the overlay and adds a random phrase to the game board
+    //hides the overlay, selects a random phrase and adds it to the game board
     startGame(){
-        const overlay = document.getElementById('overlay').style.display = 'none';
+        overlay.style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     }
 
-    handleInteraction(){
-
+    //If the guessed letter is in the active phrase - add the chosen class to the letter, show the letter in the phrase
+    //and check if the game has been won. If the game is won - call the gameOver() method.
+    //If the guessed letter is not in the phrase - add the wrong class to the letter and remove a life
+    handleInteraction(button){
+        const buttonInnerHTML = button.innerHTML;  
+        button.disabled = true;
+        if(this.activePhrase.checkLetter(buttonInnerHTML)){
+            button.classList.add('chosen');
+            this.activePhrase.showMatchedLetter(buttonInnerHTML);
+            this.checkForWin();
+            if(this.checkForWin()){
+                this.gameOver(true);
+            }
+        }  else {
+            button.classList.add('wrong');
+            this.removeLife();
+        }
     }
-
+     
+    //Checks to see if the player has revealed all of the letters in the active phrase
     checkForWin(){
-        //Checks to see if the player has revealed all of the letters in the active phrase
-       
+       const hideClass = document.getElementsByClassName('hide');
+       if(hideClass.length === 0){
+           return true;
+       } else {
+           return false;
+       }
     }
 
+    //Adds 1 to the missed property.
+    //Replaces a liveHeart image with a lostHeart
+    //If 5 wrong guesses have been made, the game is ended
     removeLife(){
-        //Removes a life from the scoreboard by replacing one of the liveHeart.png images with a 
-        //lostHeart.png image and increments the missed property
-        //If the player has five missed guesses then end the game by calling the gameOver() method
+        this.missed +=1;
+        for(let i = 0; i < this.missed; i++){
+            liveHeart[i].src = 'images/lostHeart.png';
+        }
+
+        if(this.missed === 5){
+            this.gameOver();
+        }
     }
 
-    gameOver(){
-        //Displays the original start screen overlay and depending on the outcome of the game 
-        //updates the overlay h1 element with a friendly win or loss message
-        //and replaces the overlay's start css class with either win or lose css class
+    //remove all li elements from the Phrase ul element
+    //give each keyboard button the 'key' class name
+    //all heart images displays the liveHeart.png image
+    //displays the start screen overlay with different message and background color for win or lose
+    gameOver(gameWon){
+        const li = document.querySelectorAll('#phrase li');
+        li.forEach(function (li) {
+            li.parentNode.removeChild(li);
+        });
+        for(let i = 0; i < keyboard.length; i++){
+            keyboard[i].className = 'key';
+            keyboard[i].disabled = false;
+        }
+        for(let j = 0; j < 5; j++){
+            liveHeart[j].src = 'images/liveHeart.png';
+        }
+        
+        const gameOverMessage = document.getElementById('game-over-message');
+        if(gameWon){
+            overlay.style.display = 'flex';
+            overlay.className = 'win';
+            gameOverMessage.textContent = 'Well done!';
+        } else {
+            overlay.style.display = 'flex';
+            overlay.className = 'lose';
+            gameOverMessage.textContent = 'Better luck next time!'
+
+        } 
     }
-
-
 }
+
+

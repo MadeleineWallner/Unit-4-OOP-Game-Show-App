@@ -16,12 +16,12 @@ class Phrase {
      phraseLetters.forEach(function(letter) {
        if(letter === ' '){
         const spaceLi = document.createElement('li');
-        spaceLi.className = 'space';
+        spaceLi.classList.add('space');
         spaceLi.innerHTML = ' ';
         phraseUl.appendChild(spaceLi);
        } else {
         const letterLi = document.createElement('li');
-        letterLi.className = 'letter';
+        letterLi.classList.add('hide', 'letter', letter);
         letterLi.innerHTML = letter;
         phraseUl.appendChild(letterLi);
       }
@@ -39,11 +39,12 @@ class Phrase {
 
   //check if the clicked letter exist in the active phrase. If it does, the letter in the phrase gets the 'show' class
   showMatchedLetter(letter){
-    const letterClass = document.querySelectorAll('.letter');
+    const letterClass = document.getElementsByClassName(letter);
     for(let j = 0; j < letterClass.length; j++){
-      if(letterClass[j].textContent === letter){
-        letterClass[j].className = 'show';
-      }
+      if(letterClass[j].innerHTML === letter){
+         letterClass[j].classList.add('show');
+         letterClass[j].classList.remove('hide');
+      } 
     }
   }
 }
