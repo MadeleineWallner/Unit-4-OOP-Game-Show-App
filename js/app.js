@@ -12,8 +12,14 @@ let game;
 document.getElementById('btn__reset').addEventListener('click', () => {
    game = new Game();
    game.startGame();
-   
-   
+});
+
+//The game can also be started by pressing the enter key
+document.addEventListener('keyup', (e) => {
+   if(e.key === 'Enter' && overlay.style.display != 'none'){
+      game = new Game();
+      game.startGame();
+   }
 });
 
 //When a button on the onscreen keyboard is clicked - handleInteraction() is called 
@@ -23,11 +29,12 @@ document.getElementById('btn__reset').addEventListener('click', () => {
       });
    }
 
-//When a button on the physical keyboard is clicked - handleInteraction is called
+//When a button on the physical keyboard is clicked - handleInteraction is called.
    for(let j = 0; j < keyboard.length; j++){
    document.addEventListener('keyup', (e) => {
-      if(e.key === keyboard[j].textContent){
-         game.handleInteraction(keyboard[j])
+      if(e.key === keyboard[j].textContent && keyboard[j].disabled === false && overlay.style.display === 'none' ){
+         game.handleInteraction(keyboard[j]);
       }
    })
 }
+

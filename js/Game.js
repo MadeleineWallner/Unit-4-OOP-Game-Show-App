@@ -19,7 +19,7 @@ class Game {
     createPhrases(){
         let phrases = [
             new Phrase ('Just keep swimming'),
-            new Phrase ('To live would be an awfully big adventure'),
+            new Phrase ('May the force be with you'),
             new Phrase ('You are a wizard Harry'),
             new Phrase ('I am batman'),
             new Phrase ('Nobody puts baby in a corner')
@@ -85,7 +85,7 @@ class Game {
     //remove all li elements from the Phrase ul element
     //give each keyboard button the 'key' class name
     //all heart images displays the liveHeart.png image
-    //displays the start screen overlay with different message and background color for win or lose
+   
     gameOver(gameWon){
         const li = document.querySelectorAll('#phrase li');
         li.forEach(function (li) {
@@ -99,15 +99,24 @@ class Game {
             liveHeart[j].src = 'images/liveHeart.png';
         }
         
+        //displays the start screen overlay with different message and background color for win or lose.
+        //also adds a class to the gameOverMessage
         const gameOverMessage = document.getElementById('game-over-message');
+        const title = document.querySelector('.title');
         if(gameWon){
             overlay.style.display = 'flex';
             overlay.className = 'win';
+            title.style.display = 'none';
             gameOverMessage.textContent = 'Well done!';
+            gameOverMessage.className = 'game_over_win'
+            
         } else {
             overlay.style.display = 'flex';
             overlay.className = 'lose';
+            title.style.display = 'none';
             gameOverMessage.textContent = 'Better luck next time!'
+            gameOverMessage.className = 'game_over_lose'
+            
 
         } 
     }
