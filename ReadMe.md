@@ -14,7 +14,7 @@
 
 - Changed the colors for the win and lose overlays
 
-- Added animation to the Phrase Hunter title (found at: https://css-tricks.com/snippets/css/typewriter-effect/)
+- Added animation to the Phrase Hunter title
 
 - 
 
