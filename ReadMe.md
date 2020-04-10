@@ -16,5 +16,11 @@
 
 - Added animation to the Phrase Hunter title
 
-- 
+- Gave each key a black border
+
+- Changed the font and background on the phrase header
+
+- Added a gradiant background
+
+
 

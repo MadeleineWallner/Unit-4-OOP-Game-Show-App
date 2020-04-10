@@ -22,7 +22,7 @@ class Game {
             new Phrase ('May the force be with you'),
             new Phrase ('You are a wizard Harry'),
             new Phrase ('I am batman'),
-            new Phrase ('Nobody puts baby in a corner')
+            new Phrase ('Hakuna Matata')
         ];
         return phrases;
     }
@@ -88,7 +88,7 @@ class Game {
    
     gameOver(gameWon){
         const li = document.querySelectorAll('#phrase li');
-        li.forEach(function (li) {
+        li.forEach(li => {
             li.parentNode.removeChild(li);
         });
         for(let i = 0; i < keyboard.length; i++){

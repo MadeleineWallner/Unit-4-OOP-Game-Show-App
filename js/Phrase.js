@@ -13,7 +13,7 @@ class Phrase {
     const phraseLetters = this.phrase.split('');
     const phraseUl = document.getElementById('phrase'); 
 
-     phraseLetters.forEach(function(letter) {
+     phraseLetters.forEach(letter => {
        if(letter === ' '){
         const spaceLi = document.createElement('li');
         spaceLi.classList.add('space');
