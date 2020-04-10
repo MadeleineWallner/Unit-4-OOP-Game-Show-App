@@ -20,7 +20,7 @@
 
 - Changed the font and background on the phrase header
 
-- Added a gradiant background
+- Added a gradient background
 
 
 
