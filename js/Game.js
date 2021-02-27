@@ -18,14 +18,14 @@ class Game {
     }
     createPhrases(){
         let phrases = [
-            new Phrase ('Just keep swimming'),
+            new Phrase ('My Precious'),
             new Phrase ('May the force be with you'),
             new Phrase ('You are a wizard Harry'),
             new Phrase ('I am batman'),
             new Phrase ('Hakuna Matata'),
             new Phrase ('Keep your friends close but your enemies closer'),
             new Phrase ('ET Phone Home'),
-            new Phrase ('My Precious')
+            new Phrase ('Just keep swimming')
         ];
         return phrases;
     }
