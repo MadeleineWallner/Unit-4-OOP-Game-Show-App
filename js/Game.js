@@ -22,7 +22,10 @@ class Game {
             new Phrase ('May the force be with you'),
             new Phrase ('You are a wizard Harry'),
             new Phrase ('I am batman'),
-            new Phrase ('Hakuna Matata')
+            new Phrase ('Hakuna Matata'),
+            new Phrase ('Keep your friends close but your enemies closer'),
+            new Phrase ('ET Phone Home'),
+            new Phrase ('My Precious')
         ];
         return phrases;
     }
